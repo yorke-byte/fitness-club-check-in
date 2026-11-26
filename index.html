@@ -103,6 +103,7 @@
       border-radius: 12px;
       cursor: pointer;
       user-select: none;
+      touch-action: manipulation;
     }
     .key-btn:active { background: var(--surface-2); transform: scale(0.97); }
     .key-btn.action { font-size: 14px; font-weight: 700; color: var(--muted); }
@@ -736,12 +737,8 @@
         } else {
           if (ch === '"') inQuotes = true;
           else if (ch === ',') { row.push(cur); cur = ""; }
-          else if (ch === '
-' && next === '
-') { row.push(cur); rows.push(row); row = []; cur = ""; i++; }
-          else if (ch === '
-' || ch === '
-') { row.push(cur); rows.push(row); row = []; cur = ""; }
+          else if (ch === '\r' && next === '\n') { row.push(cur); rows.push(row); row = []; cur = ""; i++; }
+          else if (ch === '\n' || ch === '\r') { row.push(cur); rows.push(row); row = []; cur = ""; }
           else cur += ch;
         }
       }
