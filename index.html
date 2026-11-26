@@ -736,10 +736,12 @@
         } else {
           if (ch === '"') inQuotes = true;
           else if (ch === ',') { row.push(cur); cur = ""; }
-          else if (ch === '' && next === '
+          else if (ch === '
+' && next === '
 ') { row.push(cur); rows.push(row); row = []; cur = ""; i++; }
           else if (ch === '
-' || ch === '') { row.push(cur); rows.push(row); row = []; cur = ""; }
+' || ch === '
+') { row.push(cur); rows.push(row); row = []; cur = ""; }
           else cur += ch;
         }
       }
